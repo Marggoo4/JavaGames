@@ -7,6 +7,10 @@ public class Objects extends BasicGame {
     private float xRec;
     private float yRec;
     private float speedRec;
+    private boolean movingRecRight = true;
+    private boolean movingRecDown = false;
+    private boolean movingRecLeft = false;
+    private boolean movingRecUp = false;
 
     // Oval
     private float xOval;
@@ -16,7 +20,7 @@ public class Objects extends BasicGame {
     // Circle
     private float yCircle;
     private float speedCircle;
-    private boolean isCircleReturning;
+    private boolean movingCircle;
 
     public Objects(String title) {
         super(title);
@@ -27,7 +31,7 @@ public class Objects extends BasicGame {
         // Rectangle
         this.xRec = 100;
         this.yRec = 100;
-        this.speedRec = 10;
+        this.speedRec = 2.5f;
 
         // Oval
         this.xOval = 100;
@@ -43,7 +47,43 @@ public class Objects extends BasicGame {
     @Override
     public void update(GameContainer gameContainer, int delta) throws SlickException {
         // Rectangle
-        this.xRec += (float) delta / this.speedRec;
+        if (movingRecRight) {
+            this.xRec += (float) delta / this.speedRec;
+
+            if (this.xRec >= 600) {
+                movingRecRight = false;
+                movingRecDown = true;
+            }
+        }
+
+        if (movingRecDown) {
+            this.yRec += (float) delta / this.speedRec;
+
+            if (this.yRec >= 400) {
+                movingRecDown = false;
+                movingRecLeft = true;
+            }
+        }
+
+        if (movingRecLeft) {
+            this.xRec -= (float) delta / this.speedRec;
+
+            if (this.xRec <= 100) {
+                movingRecLeft = false;
+                movingRecUp = true;
+            }
+        }
+
+        if (movingRecUp) {
+            this.yRec -= (float) delta / this.speedRec;
+
+            if (this.yRec <= 100) {
+                movingRecUp = false;
+                movingRecRight = true;
+            }
+        }
+
+
 
 
         // Oval
@@ -63,7 +103,19 @@ public class Objects extends BasicGame {
 
 
         // Circle
+        if (movingCircle) {
+            this.yCircle += (float) delta / this.speedCircle;
 
+            if (this.yCircle > 500) {
+                movingCircle = false;
+            }
+        } else {
+            this.yCircle -= (float) delta / this.speedCircle;
+
+            if (this.yCircle < 100) {
+                movingCircle = true;
+            }
+        }
 
 
     }
