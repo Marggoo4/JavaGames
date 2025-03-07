@@ -1,4 +1,4 @@
-package at.bischof.games.Objects_03;
+package at.bischof.games.objects_03;
 
 import org.newdawn.slick.*;
 
