@@ -92,6 +92,10 @@ public class ObjectsGame extends BasicGame {
             circle.render(graphics);
         }
 
+        for (Eclipse eclipse:this.eclipses) {
+            eclipse.render(graphics);
+        }
+
     }
 
 

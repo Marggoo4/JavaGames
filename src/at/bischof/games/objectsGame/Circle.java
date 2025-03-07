@@ -10,6 +10,7 @@ public class Circle {
     private float y;
     private float speed;
     private int diameter;
+    private int counter = 0;
 
     public Circle() {
 
@@ -25,6 +26,15 @@ public class Circle {
     }
 
     public void update(int delta) {
+        counter++;
+        if (counter>100){
+            diameter++;
+            counter = 0;
+        }
+
+        if (diameter > 100) {
+            diameter = 10;
+        }
 
         this.y += (float) delta / this.speed;
 
