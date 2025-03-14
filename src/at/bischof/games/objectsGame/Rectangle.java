@@ -2,7 +2,7 @@ package at.bischof.games.objectsGame;
 
 import org.newdawn.slick.Graphics;
 
-public class Rectangle {
+public class Rectangle implements Actor {
 
     private enum DIRECTION {RIGHT, DOWN, LEFT, UP}
 
@@ -24,7 +24,7 @@ public class Rectangle {
 
         this.x += (float) delta / this.speed;
 
-        if (this.x > 600) {
+        if (this.x > 1000) {
             this.x = 0;
         }
 

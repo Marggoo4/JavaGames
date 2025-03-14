@@ -25,9 +25,7 @@ public class ObjectsGame extends BasicGame {
         super(title);
     }
 
-    private List<Rectangle> rectangles;
-    private List<Circle> circles;
-    private List<Eclipse> eclipses;
+    private List<Actor> actors;
 
 
 
@@ -37,25 +35,23 @@ public class ObjectsGame extends BasicGame {
 
     @Override
     public void init(GameContainer gameContainer) throws SlickException {
-        this.rectangles = new ArrayList<>();
-        this.circles = new LinkedList<>();
-        this.eclipses = new ArrayList<>();
+        this.actors = new ArrayList<>();
 
         Random random = new Random();
         for (int i = 0; i < 10; i++) {
-            Rectangle  rectangle = new Rectangle(random.nextInt(600), random.nextInt(600), random.nextInt(50));
-            rectangles.add(rectangle);
+            Rectangle  rectangle = new Rectangle(random.nextInt(600), random.nextInt(800), random.nextInt(50));
+            actors.add(rectangle);
         }
 
         for (int i = 0; i < 10; i++) {
             Circle circle = new Circle();
-            this.circles.add(circle);
+            this.actors.add(circle);
 
         }
 
         for (int i = 0; i < 10; i++) {
             Eclipse eclipse = new Eclipse();
-            this.eclipses.add(eclipse);
+            this.actors.add(eclipse);
         }
 
 
@@ -65,35 +61,16 @@ public class ObjectsGame extends BasicGame {
 
     @Override
     public void update(GameContainer gameContainer, int delta) throws SlickException {
-        for (Rectangle rectangle:this.rectangles) {
-            rectangle.update(delta);
+        for (Actor actor : this.actors) {
+            actor.update(delta);
         }
-
-        for (Circle circle:this.circles) {
-            circle.update(delta);
-        }
-
-        for (Eclipse eclipse:this.eclipses) {
-            eclipse.update(delta);
-        }
-
-
-
 
     }
 
     @Override
     public void render(GameContainer gameContainer, Graphics graphics) throws SlickException {
-        for (Rectangle rectangle:this.rectangles) {
-            rectangle.render(graphics);
-        }
-
-        for (Circle circle:this.circles) {
-            circle.render(graphics);
-        }
-
-        for (Eclipse eclipse:this.eclipses) {
-            eclipse.render(graphics);
+        for (Actor actor : this.actors) {
+            actor.render(graphics);
         }
 
     }
